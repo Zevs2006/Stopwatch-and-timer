@@ -1,4 +1,4 @@
-﻿namespace Stopwatch_and_timer
+namespace Stopwatch_and_timer
 {
     partial class Form1
     {
@@ -40,6 +40,9 @@
             buttonStopTimer = new Button();
             buttonResetTimer = new Button();
             labelTimer = new Label();
+            buttonLap = new Button(); // Кнопка для установки флажка
+            listBoxLaps = new ListBox(); // Список для отображения флажков
+
             ((System.ComponentModel.ISupportInitialize)numericUpDownTime).BeginInit();
             SuspendLayout();
             // 
@@ -91,7 +94,10 @@
             numericUpDownTime.Margin = new Padding(4, 3, 4, 3);
             numericUpDownTime.Name = "numericUpDownTime";
             numericUpDownTime.Size = new Size(140, 23);
-            numericUpDownTime.TabIndex = 3;
+            numericUpDownTime.Minimum = 0; // Устанавливаем минимальное значение
+            numericUpDownTime.Maximum = 100000; // Увеличиваем максимальное значение
+            numericUpDownTime.DecimalPlaces = 0; // Убираем дробные числа
+            numericUpDownTime.Increment = 1; // Шаг увеличения на 1
             // 
             // buttonSetTimer
             // 
@@ -147,11 +153,32 @@
             labelTimer.TabIndex = 8;
             labelTimer.Text = "00:00:00";
             // 
+            // buttonLap
+            // 
+            buttonLap.Location = new Point(203, 14);
+            buttonLap.Margin = new Padding(4, 3, 4, 3);
+            buttonLap.Name = "buttonLap";
+            buttonLap.Size = new Size(88, 27);
+            buttonLap.TabIndex = 9;
+            buttonLap.Text = "Флажок";
+            buttonLap.UseVisualStyleBackColor = true;
+            buttonLap.Click += buttonLap_Click; // Обработчик события
+            // 
+            // listBoxLaps
+            // 
+            listBoxLaps.Location = new Point(14, 160);
+            listBoxLaps.Margin = new Padding(4, 3, 4, 3);
+            listBoxLaps.Name = "listBoxLaps";
+            listBoxLaps.Size = new Size(277, 100);
+            listBoxLaps.TabIndex = 10;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(331, 158);
+            ClientSize = new Size(331, 273); // Обновлено для отображения списка флажков
+            Controls.Add(listBoxLaps); // Добавляем список флажков на форму
+            Controls.Add(buttonLap); // Добавляем кнопку флажка на форму
             Controls.Add(labelTimer);
             Controls.Add(buttonResetTimer);
             Controls.Add(buttonStopTimer);
@@ -182,5 +209,7 @@
         private System.Windows.Forms.Button buttonStopTimer;
         private System.Windows.Forms.Button buttonResetTimer;
         private System.Windows.Forms.Label labelTimer;
+        private System.Windows.Forms.Button buttonLap; // Новый элемент
+        private System.Windows.Forms.ListBox listBoxLaps; // Новый элемент
     }
 }
